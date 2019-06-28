@@ -26,12 +26,40 @@
     <h1>장바구니</h1>
     <div id="cart"></div>
     <script>
-        // 1. id 가 product 인 div 안에 있는 img 엘리먼트 클릭하면, 
-        //  클릭한 img 엘리먼트와 동일한 엘리먼트를 id 가 cart 인 div 에 추가
-        
+       
+       
+       var cartDiv = document.querySelector('#cart');
+       var prodList = document.querySelectorAll('#product img');
+          for (var i = 0; i<prodList.length; i++){
+               var p = prodList[i];
+               
+               p.onclick= function(){
+            //    cartDiv.innerHTML += '<img src=" '+this.src+'" />';
+               var newImg = document.createElement('img');
+               newImg.src = this.src;
+               cartDiv.appendChild(newImg);
+              
+        //       newImg.onclick = function(){
+        //            this.parentElement.removeChild( this );
+        //   } 
+                }
+               }
+       
+
+
 
         // 2. id 가 cart 인 div 안에 있는 img 엘리먼트 클릭하면, 
         //  클릭한 img 엘리먼트를 삭제
+        cartDiv.onclick = function(ev){
+            // console.log(this);   cartDiv
+            // console.log(ev.currentTarget); cartDiv
+            console.log(ev.target); //클릭된 이미지
+            if(ev.target.nodeName ==='IMG') {
+
+             ev.target.parentElement.removeChild(ev.target);
+            // cartDiv.removeChild(ev.target);
+            }
+        };
     </script>
 </body>
 </html>
