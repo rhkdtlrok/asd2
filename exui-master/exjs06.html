@@ -33,14 +33,19 @@ table{
 
         //1. 현재 prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 출력
         var tb = document.querySelector('#prods');
-        var p = prodList[i];
-        for (var i = 0; i < prodList.length; i++) {
+        
+        
+        function printProdList() {
+            var html = '';
+            for (var i = 0; i < prodList.length; i++) {
             var p = prodList[i];
-            tb.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price+'</td>'; '</tr>'
+           html += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price+'</td>'; '</tr>'
         
         }
-       
-
+        tb.innerHTML = html
+        }
+        
+        printProdList();
         //2. 저장 버튼을 클릭하면, 입력한 상품 정보를 prodList 에 추가하고,
         //  prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 다시 출력
         //  input 엘리먼트에 입력되어 있는 값들은 초기화
@@ -51,15 +56,15 @@ table{
         var Save = document.querySelector('#save');
 
         Save.onclick = function () {
-            var a = Number( Pno.value ); 
-            var b = Number( Pname.value );
-            var c = Number( Price.value ); 
+            var pnoval = Number(pno.value);
+            var priceval = Number(price.value);
+            prodList.push({no:Pno.value , name: Pname.value, price : Price.value })
             
-            
-            for (var i = start; i <= end; i++) {
-                sum = sum + i; // sum += i;
-            }
-           
+            printProdList();
+              Pno.value = '';
+              Pname.value = '';
+              Price.value = '';
+
             };
         
      
